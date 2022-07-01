@@ -1,5 +1,6 @@
 # **Coin-Collector-Game**
 A simple game created with HTML, CSS, and Javascript that you can play in the browser.
+###  <a href="https://coin-collecter.netlify.app">LIVE DEMO</a>
 
 ### Languages
 - HTML
