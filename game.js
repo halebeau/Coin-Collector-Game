@@ -1,18 +1,21 @@
-// define letiables
-let game;
-let player;
-let platforms;
-let badges;
-let items;
-let cursors;
-let jumpButton;
-let text;
-let winningMessage;
-let won = false;
-let currentScore = 0;
-let winningScore = 100;
+let game
+let player
+let platforms
+let badges
+let stars
+let poisons
+let cursors
+let jumpButton
+let scoreText
+let livesText
+let finalMessage
+let won = false
+let gameOver = false
+let currentScore = 0
+let lives = 3
+let winningScore = 100
 
-// add collectable items to the game
+
 function addItems() {
   items = game.add.physicsGroup()
   createItem(375, 400, "coin")
@@ -69,7 +72,7 @@ function itemHandler(player, item) {
   } else if (item.key === 'poison') {
     currentScore = currentScore - 20
   } else if (item.key === 'star') {
-    currentScore = currentScore + 25
+    currentScore = currentScore + 20
   }
   if (currentScore === winningScore) {
       createBadge();
@@ -95,7 +98,7 @@ window.onload = function () {
     game.load.image('platform2', 'images/platform_2.png')
     
     //Load spritesheets
-    game.load.spritesheet("player", "images/chalkers.png", 48, 62)
+    game.load.spritesheet("player", "images/mikethefrog.png", 32, 32)
     game.load.spritesheet("coin", "images/coin.png", 36, 44)
     game.load.spritesheet("badge", "images/badge.png", 42, 54)
     game.load.spritesheet('poison', 'images/poison.png', 32, 32)
@@ -116,8 +119,8 @@ window.onload = function () {
 
     cursors = game.input.keyboard.createCursorKeys();
     jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-    text = game.add.text(16, 16, "SCORE: " + currentScore, { font: "bold 24px Arial", fill: "white" });
-    winningMessage = game.add.text(game.world.centerX, 275, "", { font: "bold 48px Arial", fill: "white" });
+    text = game.add.text(16, 16, "SCORE: " + currentScore, { font: "bold 24px Arial", fill: "green" });
+    winningMessage = game.add.text(game.world.centerX, 275, "", { font: "bold 48px Arial", fill: "yellow" });
     winningMessage.anchor.setTo(0.5, 1);
   }
 
