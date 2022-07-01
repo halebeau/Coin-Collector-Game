@@ -5,6 +5,7 @@ A simple game created with HTML, CSS, and Javascript that you can play in the br
 - HTML
 - CSS
 - Javascript
+- phaser.js
 ### Gameplay
 - Use <left and >right arrows on keyboard to move character. 
 - Use spavcebar to jump
