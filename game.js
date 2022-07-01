@@ -14,15 +14,36 @@ let winningScore = 100;
 
 // add collectable items to the game
 function addItems() {
-  items = game.add.physicsGroup();
-  createItem(375, 300, 'coin');
+  items = game.add.physicsGroup()
+  createItem(375, 400, "coin")
+  createItem(575, 500, "coin")
+  createItem(225, 500, "coin")
+  createItem(100, 250, "coin")
+  createItem(575, 150, "coin")
+  createItem(525, 300, "coin")
+  createItem(650, 250, "coin")
+  createItem(225, 200, "coin")
+  createItem(370, 500, "poison")
+  createItem(100, 375, "poison")
+  createItem(375, 100, "poison")
+  createItem(125, 50, "star")
 }
 
 // add platforms to the game
 function addPlatforms() {
-  platforms = game.add.physicsGroup();
-  platforms.create(450, 450, 'platform');
-  platforms.setAll('body.immovable', true);
+  platforms = game.add.physicsGroup()
+  platforms.create(100, 100, "platform2")
+  platforms.create(450, 550, "platform")
+  platforms.create(100, 550, "platform")
+  platforms.create(300, 450, "platform")
+  platforms.create(250, 150, "platform")
+  platforms.create(50, 300, "platform2")
+  platforms.create(150, 250, "platform")
+  platforms.create(650, 300, "platform")
+  platforms.create(550, 200, "platform2")
+  platforms.create(300, 450, "platform2")
+  platforms.create(400, 350, "platform")
+  platforms.setAll("body.immovable", true)
 }
 
 // create a single animated item and add to screen
@@ -43,7 +64,13 @@ function createBadge() {
 // when the player collects an item on the screen
 function itemHandler(player, item) {
   item.kill();
-  currentScore = currentScore + 10;
+  if (item.key === 'coin') {
+    currentScore = currentScore + 10;
+  } else if (item.key === 'poison') {
+    currentScore = currentScore - 20
+  } else if (item.key === 'star') {
+    currentScore = currentScore + 25
+  }
   if (currentScore === winningScore) {
       createBadge();
   }
@@ -61,15 +88,18 @@ window.onload = function () {
   
   // before the game begins
   function preload() {
-    game.stage.backgroundColor = '#5db1ad';
+    game.stage.backgroundColor = "#90E0EF"
     
     //Load images
     game.load.image('platform', 'images/platform_1.png');
+    game.load.image('platform2', 'images/platform_2.png')
     
     //Load spritesheets
     game.load.spritesheet("player", "images/chalkers.png", 48, 62)
     game.load.spritesheet("coin", "images/coin.png", 36, 44)
     game.load.spritesheet("badge", "images/badge.png", 42, 54)
+    game.load.spritesheet('poison', 'images/poison.png', 32, 32)
+    game.load.spritesheet('star', 'images/star.png', 32, 32)
   }
 
   // initial game set up
@@ -99,7 +129,7 @@ window.onload = function () {
     game.physics.arcade.overlap(player, badges, badgeHandler);
     player.body.velocity.x = 0;
 
-    // is the left cursor key presssed?
+    // is the left cursor key pressed?
     if (cursors.left.isDown) {
       player.animations.play('walk', 10, true);
       player.body.velocity.x = -300;
